@@ -1,21 +1,26 @@
-import { writeFile } from "fs/promises";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
+import fs from "fs/promises";
+import path from "path";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const targetPath = `${__dirname}/../src/environments/environment.prod.ts`;
+const envPath = path.resolve("src/environments");
 
-const envFileContent = `
+await fs.mkdir(envPath, { recursive: true });
+
+const environmentFilePath = path.join(envPath, "environment.prod.ts");
+
+const environmentFileContent = `
 export const environment = {
   production: true,
-  openWeatherApiKey: '${process.env.NG_OPENWEATHER_API_KEY}',
-  huggingfaceToken: '${process.env.NG_HUGGINGFACE_TOKEN}'
+  openWeatherApiKey: "${process.env.NG_OPENWEATHER_API_KEY || ""}",
+  huggingfaceToken: "${process.env.NG_HUGGINGFACE_TOKEN || ""}"
 } as const;
 `;
 
 try {
-  await writeFile(targetPath, envFileContent);
-  console.log(`environment.prod.ts generated at ${targetPath}`);
+  await fs.writeFile(environmentFilePath, environmentFileContent.trim(), {
+    encoding: "utf8",
+  });
+  console.log("environment.prod.ts generated successfully.");
 } catch (err) {
-  console.error(`failed to write environment.prod.ts:`, err);
+  console.error("Failed to write environment.prod.ts:", err);
+  process.exit(1);
 }
