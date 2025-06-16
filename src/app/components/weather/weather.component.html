@@ -1,0 +1,65 @@
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <form (ngSubmit)="searchWeather()" class="row g-2 align-items-center">
+      <div class="col-md-8">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="city"
+          name="city"
+          placeholder="Enter city name"
+          required
+        />
+      </div>
+      <div class="col-md-4">
+        <button
+          class="btn btn-primary w-100"
+          type="submit"
+          [disabled]="loading"
+        >
+          {{ loading ? "Loading..." : "Get Weather" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="error" class="alert alert-danger">
+  <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+</div>
+
+<div *ngIf="weatherData" class="card shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ weatherData.name }}, {{ weatherData.sys.country }}
+    </h5>
+    <p class="card-text">
+      <i class="fas fa-temperature-high text-danger me-2"></i>
+      <strong>Temp:</strong> {{ weatherData.main.temp }} °C<br />
+
+      <i class="fas fa-cloud-sun text-warning me-2"></i>
+      <strong>Condition:</strong> {{ weatherData.weather[0].description }}<br />
+
+      <i class="fas fa-wind text-info me-2"></i>
+      <strong>Wind:</strong> {{ weatherData.wind.speed }} m/s<br />
+
+      <i class="fas fa-tint text-primary me-2"></i>
+      <strong>Humidity:</strong> {{ weatherData.main.humidity }}%
+    </p>
+
+    <div class="text-end mt-3">
+      <button
+        class="btn btn-outline-secondary"
+        (click)="generateSummary()"
+        [disabled]="summarizing"
+      >
+        <i class="fas fa-robot me-2"></i>
+        {{ summarizing ? "Generating Summary..." : "AI Weather Summary" }}
+      </button>
+    </div>
+
+    <div *ngIf="aiSummary" class="alert alert-info mt-3">
+      <i class="fas fa-comment-dots me-2"></i>{{ aiSummary }}
+    </div>
+  </div>
+</div>
