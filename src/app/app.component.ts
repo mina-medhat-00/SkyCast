@@ -7,12 +7,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [
-    CommonModule,
-    NavbarComponent,
-    WeatherComponent,
-    FooterComponent,
-  ],
+  imports: [CommonModule, NavbarComponent, WeatherComponent, FooterComponent],
   templateUrl: "./app.component.html",
 })
 export class AppComponent {

@@ -1,7 +1,13 @@
-<footer class="mt-auto py-3 border-top text-center">
+<footer
+  class="mt-auto py-3 border-top text-center"
+  [ngClass]="{
+    'bg-light': !isDarkTheme,
+    'bg-dark text-light border-secondary': isDarkTheme
+  }"
+>
   <div class="container">
-    <span class="text-muted"
-      >&copy; {{ currentYear }} Weather AI App. Built with Angular ♥</span
-    >
+    <span [ngClass]="{ 'text-muted': !isDarkTheme, 'text-light': isDarkTheme }">
+      &copy; {{ currentYear }} Weather AI App. Built with Angular
+    </span>
   </div>
 </footer>
