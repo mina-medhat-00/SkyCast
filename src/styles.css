@@ -15,13 +15,3 @@ body {
   color: var(--text-color) !important;
   font-family: "Open Sans", sans-serif !important;
 }
-
-.card,
-.navbar,
-.footer,
-.alert,
-input,
-button {
-  background-color: var(--bg-color) !important;
-  color: var(--text-color) !important;
-}

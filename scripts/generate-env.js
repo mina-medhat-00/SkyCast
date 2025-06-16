@@ -11,8 +11,8 @@ const environmentFileContent = `
 export const environment = {
   production: true,
   openWeatherApiKey: "${process.env.NG_OPENWEATHER_API_KEY || ""}",
-  huggingfaceToken: "${process.env.NG_HUGGINGFACE_TOKEN || ""}"
-} as const;
+  googleGeminiApiKey: "${process.env.NG_GEMINI_TOKEN || ""}"
+}
 `;
 
 try {
