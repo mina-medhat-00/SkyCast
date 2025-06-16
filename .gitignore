@@ -10,7 +10,7 @@ npm-debug.log
 yarn-error.log
 
 # Environment files that may include secrets
-/src/environments
+/src/environments/environment.prod.ts
 
 # Visual Studio Code
 .vscode
