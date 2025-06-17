@@ -58,11 +58,6 @@ export class AiService {
             const parsedHtmlString = marked.parse(rawText) as string;
             generatedHtml =
               this.sanitizer.bypassSecurityTrustHtml(parsedHtmlString);
-          } else {
-            console.warn(
-              'AI Service: Gemini candidate part found, but "text" property is missing or empty.',
-              firstPart
-            );
           }
         } else {
           console.warn(
@@ -71,10 +66,6 @@ export class AiService {
           );
         }
       } else if (response && response.promptFeedback) {
-        console.warn(
-          "AI Service: Gemini API: Prompt feedback received (possibly blocked by safety settings):",
-          response.promptFeedback
-        );
         generatedHtml = this.sanitizer.bypassSecurityTrustHtml(
           "AI could not process the prompt due to safety guidelines or content policies. Please rephrase."
         );

@@ -1,15 +1,30 @@
-import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
+import { Component, Input } from "@angular/core";
+import { CommonModule, AsyncPipe } from "@angular/common";
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "app-navbar",
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive, AsyncPipe],
   templateUrl: "./navbar.component.html",
 })
 export class NavbarComponent {
-  isDarkTheme = false;
+  isDarkTheme: boolean = false;
+  currentUserDisplayName$: Observable<string | null>;
+
+  constructor(private authService: AuthService, private router: Router) {
+    this.currentUserDisplayName$ = this.authService.currentUser$.pipe(
+      map((user) => {
+        if (user) {
+          return user.displayName || user.email || "User";
+        }
+        return "Guest";
+      })
+    );
+  }
 
   toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme;
@@ -18,6 +33,15 @@ export class NavbarComponent {
       this.isDarkTheme ? "dark" : "light"
     );
     localStorage.setItem("theme", this.isDarkTheme ? "dark" : "light");
+  }
+
+  async logout(): Promise<void> {
+    try {
+      await this.authService.logout();
+      this.router.navigate(["/login"]);
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   }
 
   ngOnInit(): void {

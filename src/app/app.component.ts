@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { NavbarComponent } from "./components/navbar/navbar.component";
-import { WeatherComponent } from "./components/weather/weather.component";
 import { FooterComponent } from "./components/footer/footer.component";
 
 @Component({
