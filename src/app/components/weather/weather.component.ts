@@ -42,10 +42,6 @@ export class WeatherComponent {
         next: (data) => {
           this.weatherData = data;
           this.loading = false;
-          console.log(
-            "WeatherComponent: Weather data fetched:",
-            this.weatherData
-          );
         },
         error: (err) => {
           console.error("WeatherComponent: Weather API error:", err);
