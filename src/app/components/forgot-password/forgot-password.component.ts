@@ -4,22 +4,19 @@ import { FormsModule } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
 
 @Component({
-  selector: "app-register",
+  selector: "app-forgot-password",
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.css"],
+  templateUrl: "./forgot-password.component.html",
+  styleUrl: "./forgot-password.component.css",
 })
-export class RegisterComponent {
-  username: string = "";
+export class ForgotPasswordComponent {
   email: string = "";
-  password: string = "";
-  confirmPassword: string = "";
   loading: boolean = false;
   errorMessage: string = "";
-  registrationSuccess: boolean = false;
+  successMessage: string = "";
 
   constructor(private router: Router) {}
 
-  async register(): Promise<void> {}
+  async requestReset(): Promise<void> {}
 }
