@@ -10,33 +10,39 @@
 
       <form (ngSubmit)="login()" #loginForm="ngForm">
         <div class="mb-3">
-          <label for="username" class="form-label visually-hidden"
-            >Username</label
+          <label for="email" class="form-label visually-hidden"
+            >Email Address</label
           >
           <div class="input-group has-validation">
-            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <span class="input-group-text"
+              ><i class="fas fa-envelope"></i
+            ></span>
             <input
-              type="text"
+              type="email"
               class="form-control"
-              id="username"
-              name="username"
-              placeholder="Username"
-              [(ngModel)]="username"
+              id="email"
+              name="email"
+              placeholder="Email Address"
+              [(ngModel)]="email"
               required
-              #usernameField="ngModel"
+              email
+              #emailField="ngModel"
               [class.is-invalid]="
-                usernameField.invalid &&
-                (usernameField.dirty || usernameField.touched)
+                emailField.invalid && (emailField.dirty || emailField.touched)
               "
             />
             <div
               class="invalid-feedback"
               *ngIf="
-                usernameField.invalid &&
-                (usernameField.dirty || usernameField.touched)
+                emailField.invalid && (emailField.dirty || emailField.touched)
               "
             >
-              Username is required.
+              <span *ngIf="emailField.errors?.['required']"
+                >Email address is required.</span
+              >
+              <span *ngIf="emailField.errors?.['email']"
+                >Please enter a valid email address.</span
+              >
             </div>
           </div>
         </div>
@@ -100,7 +106,7 @@
 
         <div class="text-center">
           <a
-            [routerLink]="['/forget-password']"
+            [routerLink]="['/forgot-password']"
             class="text-decoration-none d-block mb-2"
             >Forgot Password?</a
           >

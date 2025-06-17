@@ -11,7 +11,15 @@ const environmentFileContent = `
 export const environment = {
   production: true,
   openWeatherApiKey: "${process.env.NG_OPENWEATHER_API_KEY || ""}",
-  googleGeminiApiKey: "${process.env.NG_GEMINI_TOKEN || ""}"
+  googleGeminiApiKey: "${process.env.NG_GEMINI_TOKEN || ""}",
+  firebase: {
+    apiKey: "AIzaSyBG-f1X0xpw8F_Guma9dTSbv5KWz-3jS5c",
+    authDomain: "skycast-b8d15.firebaseapp.com",
+    projectId: "skycast-b8d15",
+    storageBucket: "skycast-b8d15.firebasestorage.app",
+    messagingSenderId: "313041843238",
+    appId: "1:313041843238:web:e0be4c7ad8bfc955c162e7",
+  },
 }
 `;
 
@@ -21,6 +29,6 @@ try {
   });
   console.log("environment.prod.ts generated successfully.");
 } catch (err) {
-  console.error("Failed to write environment.prod.ts:", err);
+  console.error("failed to write environment.prod.ts:", err);
   process.exit(1);
 }
