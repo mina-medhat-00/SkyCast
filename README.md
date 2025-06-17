@@ -1,6 +1,6 @@
 # SkyCast
 
-**SkyCast** is a sleek and modern weather app that delivers real-time forecasts, hyperlocal conditions, and beautifully minimal visualizations. Whether you're planning your day, tracking a storm, or just curious about tomorrow’s forecast, SkyCast has you covered. Beyond just weather, SkyCast now offers robust user authentication to personalize your experience.
+SkyCast is a sleek and modern weather app that delivers real-time forecasts, hyperlocal conditions, and beautifully minimal visualizations. Whether you're planning your day, tracking a storm, or just curious about tomorrow’s forecast, SkyCast has you covered. Beyond just weather, SkyCast now offers robust user authentication to personalize your experience.
 
 ---
 
